@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SR University — Sports & Clubs</title>
+  <meta name="description" content="SR University — overview of sports, clubs, events, and how to join." />
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --muted:#9aa7bd;
+      --accent:#4f46e5;
+      --glass: rgba(255,255,255,0.03);
+      --radius:14px;
+      --maxw:1100px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      color-scheme: dark;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: linear-gradient(180deg,#071024 0%, #071026 40%, #07112b 100%);
+      color:#e6eef8;
+      padding:32px 18px;
+      display:flex;
+      justify-content:center;
+      font-size:16px;
+    }
+    .wrap{width:100%;max-width:var(--maxw);}
+
+    header{
+      display:flex;align-items:center;justify-content:space-between;
+      margin-bottom:22px
+    }
+    .brand{display:flex;gap:12px;align-items:center;cursor:pointer}
+    .univ-title h1{margin:0;font-size:18px}
+    .univ-title p{margin:0;color:var(--muted);font-size:13px}
+    nav{display:flex;gap:12px;align-items:center}
+    .btn{background:var(--glass);border:1px solid rgba(255,255,255,0.04);padding:8px 12px;border-radius:10px;color:var(--muted);font-weight:600;text-decoration:none;cursor:pointer;transition:all 0.3s}
+    .btn:hover{background:rgba(255,255,255,0.06);color:#e6eef8}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),#06b6d4);color:white;border:none}
+
+    section{display:none;padding:30px;background:var(--glass);border-radius:var(--radius);margin-bottom:24px}
+    section.active{display:block}
+
+    .login-container{
+      display:flex;align-items:center;justify-content:center;
+      padding:40px 0;
+      background: linear-gradient(135deg, #003973 0%, #E5E5BE 100%);
+    }
+    .login-container.hidden{display:none}
+    .login-box{
+      width:100%;max-width:420px;
+      background:linear-gradient(180deg,var(--card), rgba(11,18,32,0.85));
+      padding:40px;border-radius:var(--radius);
+    }
+    .login-header{text-align:center;margin-bottom:32px}
+    .login-header img{width:90px;height:auto;border-radius:12px;margin-bottom:12px}
+    .login-header h2{margin:0 0 8px;font-size:24px}
+    .login-header p{color:var(--muted);margin:0;font-size:14px}
+
+    .form-group{margin-bottom:16px}
+    label{display:block;margin-bottom:6px;font-weight:600;font-size:14px}
+    input,textarea{
+      width:100%;padding:10px;border-radius:8px;
+      border:1px solid rgba(255,255,255,0.1);
+      background:rgba(255,255,255,0.05);color:#fff;
+      font-size:14px;
+    }
+    .login-btn{
+      width:100%;padding:10px;border:none;border-radius:8px;
+      background:linear-gradient(90deg,var(--accent),#06b6d4);
+      color:#fff;font-weight:600;cursor:pointer;transition:0.3s;
+    }
+
+    .club-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .club-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.05);
+      padding: 16px;
+      border-radius: 12px;
+      transition: transform 0.3s ease, background 0.3s ease;
+      text-align:center;
+    }
+    .club-card:hover {
+      transform: translateY(-4px);
+      background: rgba(255,255,255,0.08);
+    }
+    .club-card img {
+      width:100%;
+      height:160px;
+      object-fit:cover;
+      border-radius:10px;
+      margin-bottom:10px;
+    }
+    .club-card h3 {
+      margin-top: 0;
+      color: #60a5fa;
+    }
+    .club-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    footer{text-align:center;color:var(--muted);font-size:14px;margin-top:20px}
+    .social-links a{color:#60a5fa;text-decoration:none;margin:0 4px}
+    .social-links a:hover{text-decoration:underline}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand" onclick="showSection('home')">
+        <img src="https://sru.edu.in/logos/SRU_Main_Logo_Colour.png" alt="SR University Logo" style="width:56px;height:56px;border-radius:12px;object-fit:contain">
+        <div class="univ-title">
+          <h1>SR University</h1>
+          <p>Sports, Clubs & Student Life</p>
+        </div>
+      </div>
+      <nav>
+        <button class="btn" onclick="showSection('sports')">Sports</button>
+        <button class="btn" onclick="showSection('clubs')">Clubs</button>
+        <button class="btn" onclick="showSection('register')">Registration</button>
+        <button class="btn" onclick="showSection('contact')">Contact</button>
+        <button class="btn primary" onclick="showSection('loginPage')">Login</button>
+      </nav>
+    </header>
+
+    <!-- Sports Section -->
+    <section id="sports" class="active">
+      <h2>🏅 Sports</h2>
+      <p>Explore SR University’s diverse sports activities — cricket, football, badminton, and athletics. Join teams and represent your university in tournaments.</p>
+      <img src="https://sru.edu.in/wp-content/uploads/2023/04/SRU-Cricket-Team.jpg" alt="SRU Cricket Team" style="width:100%;border-radius:12px;margin-top:10px;">
+      <img src="https://sru.edu.in/wp-content/uploads/2023/04/SRU-Sports-Day.jpg" alt="SRU Sports Day" style="width:100%;border-radius:12px;margin-top:10px;">
+    </section>
+
+    <!-- Clubs Section -->
+    <section id="clubs">
+      <h2>🎭 Clubs</h2>
+      <p>Join our vibrant student clubs and build your skills, leadership, and friendships across SR University.</p>
+
+      <div class="club-list">
+        <div class="club-card">
+          <img src="https://sru.edu.in/wp-content/uploads/2023/04/Coding-Club-SRU.jpg" alt="Coding Club">
+          <h3>💻 Coding Club</h3>
+          <p>Sharpen your programming and problem-solving skills through coding contests, hackathons, and tech talks.</p>
+        </div>
+        <div class="club-card">
+          <img src="https://sru.edu.in/wp-content/uploads/2023/04/Photography-Club-SRU.jpg" alt="Photography Club">
+          <h3>📸 Photography Club</h3>
+          <p>Capture the spirit of campus life through lenses. Workshops, photo walks, and creative storytelling await.</p>
+        </div>
+        <div class="club-card">
+          <img src="https://sru.edu.in/wp-content/uploads/2023/04/Dance-Club-SRU.jpg" alt="Dance Crew">
+          <h3>💃 Dance Crew</h3>
+          <p>Showcase your rhythm and energy on stage! Participate in intercollegiate dance battles and cultural events.</p>
+        </div>
+        <div class="club-card">
+          <img src="https://sru.edu.in/wp-content/uploads/2023/04/Art-Design-Club-SRU.jpg" alt="Art Club">
+          <h3>🎨 Art & Design Club</h3>
+          <p>Express creativity through painting, sketching, and digital art. Host exhibitions and art challenges.</p>
+        </div>
+        <div class="club-card">
+          <img src="https://sru.edu.in/wp-content/uploads/2023/04/NSS-SRU.jpg" alt="NSS Club">
+          <h3>🌱 NSS (National Service Scheme)</h3>
+          <p>Serve the community, organize social awareness drives, and contribute to a better society.</p>
+        </div>
+        <div class="club-card">
+          <img src="https://sru.edu.in/wp-content/uploads/2023/04/Literary-Club-SRU.jpg" alt="Literary Club">
+          <h3>🎤 Literary Club</h3>
+          <p>Enhance your writing, debating, and speaking skills through interactive sessions and competitions.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Registration Section -->
+    <section id="register">
+      <h2>📝 Registration</h2>
+      <form onsubmit="registerUser(event)">
+        <div class="form-group">
+          <label for="regName">Full Name</label>
+          <input type="text" id="regName" placeholder="Enter your name" required>
+        </div>
+        <div class="form-group">
+          <label for="regEmail">Email</label>
+          <input type="text" id="regEmail" placeholder="your.email@sruniv.edu" required>
+        </div>
+        <div class="form-group">
+          <label for="regClub">Select Club</label>
+          <input type="text" id="regClub" placeholder="Eg: Coding Club, Dance Crew" required>
+        </div>
+        <button type="submit" class="login-btn">Submit Registration</button>
+      </form>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <h2>📞 Contact Us</h2>
+      <p>For any queries about clubs, sports, or student life — reach out below.</p>
+      <form onsubmit="sendContact(event)">
+        <div class="form-group">
+          <label for="cname">Name</label>
+          <input type="text" id="cname" placeholder="Your Name" required>
+        </div>
+        <div class="form-group">
+          <label for="cemail">Email</label>
+          <input type="text" id="cemail" placeholder="your.email@sruniv.edu" required>
+        </div>
+        <div class="form-group">
+          <label for="cmsg">Message</label>
+          <textarea id="cmsg" rows="4" placeholder="Type your message..." required></textarea>
+        </div>
+        <button type="submit" class="login-btn">Send Message</button>
+      </form>
+    </section>
+
+    <!-- Login Page -->
+    <section id="loginPage">
+      <div class="login-container">
+        <div class="login-box">
+          <div class="login-header">
+            <img src="https://sru.edu.in/logos/SRU_Main_Logo_Colour.png" alt="SR University Logo">
+            <h2>Welcome Back</h2>
+            <p>Sign in to access your student portal</p>
+          </div>
+          <form onsubmit="handleLogin(event)">
+            <div class="form-group">
+              <label for="email">Email or Student ID</label>
+              <input type="text" id="email" placeholder="your.email@sruniv.edu" required>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" id="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="login-btn">Sign In</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="social-links">
+        🌐 <a href="https://sru.edu.in/" target="_blank">Official Website</a> |
+        💼 <a href="https://www.linkedin.com/school/sr-university/" target="_blank">LinkedIn</a> |
+        📸 <a href="https://www.instagram.com/sr_university_official/" target="_blank">Instagram</a>
+      </div>
+      <p>&copy; 2025 SR University — Sports & Clubs. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    function showSection(id){
+      document.querySelectorAll("section").forEach(sec=>sec.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+    }
+
+    function handleLogin(event){
+      event.preventDefault();
+      alert("✅ Login Successful — Welcome to SR University Portal!");
+      showSection('sports');
+    }
+
+    function registerUser(event){
+      event.preventDefault();
+      alert("✅ Registration successful! Welcome to SRU Clubs.");
+      showSection('clubs');
+    }
+
+    function sendContact(event){
+      event.preventDefault();
+      alert("📩 Thank you! Your message has been sent to SR University support.");
+      showSection('sports');
+    }
+  </script>
+</body>
+</html>
